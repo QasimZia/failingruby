@@ -1,0 +1,15 @@
+<h2 style='text-align:center;'>Welcome!</h2>
+
+<h2 style='text-align:center;'>Log in</h2>
+<fieldset style='width:300px; margin: 0px auto; text-align:center;'>
+    <form action='/session/create' method='post'>
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type='text' name='email' placeholder='email'>
+        <hr>
+        <input type='password' name='password' placeholder='password'>
+        <hr>
+        <input type='submit' value='Log In'>
+    </form>
+    <hr>
+    <a href='/users/new'>New User?</a>
+</fieldset>

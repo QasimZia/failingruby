@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Belt</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class='wrapper' style='width:1000px; margin:0px auto; padding:10px;'>
+      <% if flash[:errors] %>
+        <% flash[:errors].each do |err| %>
+          <p style='color:red; margin:0px auto; text-align:center;'><%= err %></p>
+        <% end %>
+      <% end %>
+
+      <% if current_user %>
+        <a href='/users/logout'>Logout</a>
+      <% end %>
+
+      <%= yield %>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<a href='/profile'>My Profile</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @all_users.each do |user| %>
+        <% unless current_user.connectees.include?(user) %>
+            <% unless user.connectees.include?(current_user) %>
+                <tr>
+                    <td><a href='/users/<%= user.id %>'><%= user.name %></a></td>
+                    <td><a href='/create/<%= user.id %>'>Connect</a></td>
+                </tr>
+            <% end %>
+        <% end %>
+    <% end %>
+    </tbody>
+</table>

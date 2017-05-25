@@ -1,0 +1,51 @@
+<h3>Hi <%= current_user.name %>!</h3>
+<a href='/users'>All Users</a>
+
+<ul style='list-style: none;'>
+    <li>Here is your profile description:</li>
+    <li>
+        <fieldset style='overflow-y:scroll;height: 200px;'>
+            <p><%= current_user.description %><p>
+        </fieldset>
+    </li>
+
+    <li>Your Professional Network:</li>
+    <li>
+        <fieldset style='overflow-y:scroll; height: 200px;'>
+            <% @all_connections.each do |connected| %>
+                <% if connected.user_id == current_user.id && connected.status == "Accepted" %>
+                    <p><a href='/users/<%= User.find(connected.connectee_id).id %>'><%= User.find(connected.connectee_id).name %></a></p>
+                <% elsif connected.connectee_id == current_user.id && connected.status == "Accepted" %>
+                    <p><a href='/users/<%= User.find(connected.user_id).id %>'><%= User.find(connected.user_id).name %></a></p>
+                <% end %>
+            <% end %>
+        </fieldset>
+    </li>
+
+    <li>Invitations:</li>
+    <li style='font-size:10px'>The following peple asked you to be in their network:</li>
+    <li>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name: </th>
+                    <th>Action: </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @all_connections.each do |potential| %>
+                    <% if potential.connectee_id == current_user.id %>
+                        <% if potential.status == "Pending"  %>
+                            <tr>
+                                <td><a href='users/<%= User.find(potential.user_id).id %>'><%= User.find(potential.user_id).name %></a></td>
+                                <td><a href='/accept/<%= potential.id %>'>Accept</a> | <a href='/deny/<%= potential.id %>'>Ignore</a></td>    
+                            </tr>
+                        <% end %>
+                    <% end %>
+                <% end %>
+            </tbody>
+        </table>
+    </li>
+</ul>
+
+
