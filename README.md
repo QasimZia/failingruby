@@ -1,24 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Allows users to register or login, using appropriate validations and hashing for passwords.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Utilizing self-joins on a singular user table, users may request to network with other users, upon which an invite to connect is sent to the other user. Pending acceptance or denial, the user is either added to the list of networks or added back to the all users table.
